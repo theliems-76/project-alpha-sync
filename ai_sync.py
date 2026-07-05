@@ -14,7 +14,7 @@ class GeminiKeyManager:
         if not api_keys_env:
             raise ValueError("API_KEY or GEMINI_API_KEYS environment variable is not set.")
         
-        self.keys = [k.strip() for k in api_keys_env.split(",") if k.strip()]
+        self.keys = [k.strip().strip('"').strip("'") for k in api_keys_env.split(",") if k.strip()]
         self.current_index = 0
             
         self._configure_current_key()
