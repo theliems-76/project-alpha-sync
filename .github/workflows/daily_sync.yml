@@ -2,9 +2,8 @@ name: Daily OptiBot Sync
 
 on:
   schedule:
-    # Chạy hàng ngày lúc 00:00 UTC
     - cron: '0 0 * * *'
-  workflow_dispatch: # Cho phép bấm chạy bằng tay trên web
+  workflow_dispatch:
 
 jobs:
   sync_job:
