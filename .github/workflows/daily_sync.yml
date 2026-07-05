@@ -1,0 +1,29 @@
+name: Daily OptiBot Sync
+
+on:
+  schedule:
+    # Chạy hàng ngày lúc 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Cho phép bấm chạy bằng tay trên web
+
+jobs:
+  sync_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Sync Job
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+        run: |
+          python main.py
